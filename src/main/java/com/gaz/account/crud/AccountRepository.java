@@ -1,4 +1,4 @@
-package com.gaz.account;
+package com.gaz.account.crud;
 
 import com.gaz.account.model.Account;
 

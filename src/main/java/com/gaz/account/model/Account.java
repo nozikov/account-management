@@ -1,16 +1,12 @@
 package com.gaz.account.model;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
-@Setter
-@Getter
-@ToString
-@EqualsAndHashCode
+@Data
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class Account {
   private String name;
   private String surname;
