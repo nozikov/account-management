@@ -17,13 +17,15 @@ public class AccountController {
 
   @RequestMapping("/save/{name}/{surname}")
   @ResponseStatus(HttpStatus.CREATED)
-  public int save(@PathVariable("name") String name, @PathVariable("surname") String surname) {
+  public int save(@PathVariable("name") String name,
+                  @PathVariable("surname") String surname) {
     return service.save(name, surname);
   }
 
   @RequestMapping("update/{name}/{surname}")
   @ResponseStatus(HttpStatus.OK)
-  public boolean changeSurname(@PathVariable("name") String name, @PathVariable("surname") String surname) {
+  public boolean changeSurname(@PathVariable("name") String name,
+                               @PathVariable("surname") String surname) {
     return service.changeSurname(name, surname);
   }
 

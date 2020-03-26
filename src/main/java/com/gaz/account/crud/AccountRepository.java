@@ -9,5 +9,4 @@ public interface AccountRepository {
   int save(Account user);
 
   int update(String name, String newSurname);
-
 }

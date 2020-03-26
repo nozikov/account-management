@@ -29,8 +29,9 @@ public class JdbcAccountRepository implements AccountRepository {
 
   @Override
   public Account findByName(String name) {
-    return jdbcTemplate.queryForObject("select * from accounts where name = ?", new Object[]{name},
-        (rs, rowNum) -> new Account(rs.getString("name"),
-                                  rs.getString("surname")));
+    return jdbcTemplate.queryForObject("select * from accounts where name = ?",
+                                        new Object[]{name},
+                                        (rs, rowNum) -> new Account(rs.getString("name"),
+                                              rs.getString("surname")));
   }
 }
