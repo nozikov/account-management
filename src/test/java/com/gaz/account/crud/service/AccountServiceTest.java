@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 
 import com.gaz.account.crud.AccountRepository;
 import com.gaz.account.model.Account;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,34 +15,42 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class AccountServiceTest {
 
+  public static final String NAME = "Anton";
+  public static final String SURNAME = "Nozikov";
+
   @Mock
   private AccountRepository repository;
   @InjectMocks
   private AccountService service;
 
+  private Account account;
+
+  @BeforeEach
+  public void init() {
+    account = new Account(NAME, SURNAME);
+  }
+
   @Test
   void saveTest() {
-    Account account = new Account("Anton", "Nozikov");
     when(repository.save(account)).thenReturn(1);
-    assertEquals(1, service.save("Anton", "Nozikov"));
+    assertEquals(1, service.save(NAME, SURNAME));
   }
 
   @Test
   void findTest() {
-    Account account = new Account("Anton", "Nozikov");
-    when(repository.findByName("Anton")).thenReturn(account);
-    assertEquals("Nozikov", service.find("Anton").getSurname());
+    when(repository.findByName(NAME)).thenReturn(account);
+    assertEquals(SURNAME, service.find(NAME).getSurname());
   }
 
   @Test
   void changeSurnameTrueTest() {
-    when(repository.update("Anton", "Nozikov")).thenReturn(1);
-    assertTrue(service.changeSurname("Anton", "Nozikov"));
+    when(repository.update(NAME, SURNAME)).thenReturn(1);
+    assertTrue(service.changeSurname(NAME, SURNAME));
   }
 
   @Test
   void changeSurnameFalseTest() {
-    when(repository.update("Anton", "Nozikov")).thenReturn(0);
-    assertFalse(service.changeSurname("Anton", "Nozikov"));
+    when(repository.update(NAME, SURNAME)).thenReturn(0);
+    assertFalse(service.changeSurname(NAME, SURNAME));
   }
 }
